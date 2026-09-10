@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 5px;
+        }
+        img{
+            border: 2px solid;
+            padding: 10px;
+        }
+
+        table{
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+        th, td{
+            border: 2px solid;
+        }
+
+        div{
+            border:  1px solid;
+            background-color: powderblue;
+        }
+
+        nav{
+            background-color: burlywood;
+        }
+        nav a{
+            padding: 10px;
+        }
+
+        footer{
+            background-color: darkslategray;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<nav aria-label="Primary">
+    <a href="#divOne">About</a>
+    <a href="#divTwo">History</a>
+    <a href="#divThree">Features</a>
+    <a href="#divFour">Derivatives</a>
+</nav>
+<body>
+
+    <h1>Welcome</h1>
+
+    <div id="divOne">
+        <h2>About</h2>
+        <img src="vscode_icon.svg" width="200" height="100">
+        <p><cite>VS Code Logo, used since March 2019.</cite></p>
+        <p>
+            Visual Studio Code (commonly referred to as VS Code) is an integrated development environment developed by Microsoft for Windows, Linux, macOS and web browsers.
+            Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded version control with Git.
+            Users can change the theme, keyboard shortcuts and preferences, as well as install extensions that add functionality, including to extend its capabilities to function as an IDE for other languages.<br>
+            <br>
+            In the 2025 Stack Overflow Developer Survey, out of over 49,000 responses, 75.9% of respondents reported using Visual Studio Code, more than twice the percentage of respondents who reported using its nearest alternative, 
+            <a href="https://en.wikipedia.org/wiki/Visual_Studio">Visual Studio</a>.
+        </p>    
+    </div>
+
+    <div id="divTwo">
+        <h2>History</h2>
+        <p>
+            Visual Studio Code was first announced on April 29, 2015, by Microsoft at the 2015 <a href="https://en.wikipedia.org/wiki/Build_(developer_conference)">Build</a> conference. A preview build was released shortly thereafter.
+            On November 18, 2015, the project "Visual Studio Code – Open Source" (also known as "Code – OSS"), on which Visual Studio Code is based, was released under the open-source MIT License and made available on GitHub.<br>
+            <br>   
+            Extension support was also announced. On April 14, 2016, Visual Studio Code graduated from the public preview stage and was released to the web.
+        </p>
+    </div>
+
+    <div id="divThree">
+        <h2>Features</h2>
+        <p>
+            Visual Studio Code is a powerful and lightweight code editor with features such as syntax highlighting, IntelliSense, debugging, Git integration, extensions, and customizable themes.
+            It supports many programming languages and helps developers write, test, and manage code efficiently.
+        </p>
+    </div>
+
+    <div id="divFour">
+        <h2>Derivatives</h2>
+        <p>The following code editors are made from forking VS Code</p>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>License</th>
+            </tr>
+            <tr>
+                <td>Antigravity</td>
+                <td>Proprietary</td>
+            </tr>
+            <tr>
+                <td>Cursor</td>
+                <td>Proprietary</td>
+            </tr>
+            <tr>
+                <td>VS Codium</td>
+                <td>MIT</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+<footer>
+    <p>Footer</p>
+</footer>
+</html>
