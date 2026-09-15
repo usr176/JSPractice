@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Javascript Canvas</title>
+</head>
+<body>      
+
+    <div class="container-options">
+        <div class="wrapper">
+            <div class="wrapper-slider">
+
+                <label for="grid-width">Grid Width</label>
+                <input type="range" id="grid-width" min="1" max="30" value="20">
+                <span id="width-label">00</span>
+
+                <label for="grid-height">Grid Height</label>
+                <input type="range" id="grid-height" min="1" max="30" value="14">
+                <span id="height-label">00</span>
+
+            </div>
+            <div class="wrapper-option">
+
+                <button id="create-canvas">Create Canvas</button>
+
+                <button id="erase">
+                    <span class="material-symbols-outlined">
+                        ink_eraser
+                    </span>
+                </button>
+                <button id="paint">
+                    <span class="material-symbols-outlined">
+                        brush
+                    </span>
+                </button>
+                <button id="fill">
+                    <span class="material-symbols-outlined">
+                        format_color_fill
+                    </span>
+                </button>
+
+                <input type="color" id="color-picker">
+
+            </div>
+        </div>
+
+        <div class="container">
+        </div>
+
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
