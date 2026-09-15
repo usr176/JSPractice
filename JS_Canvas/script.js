@@ -13,11 +13,13 @@ let createButton = document.getElementById("create-canvas")
 let colorIn = document.getElementById("color-picker")
 let ersBtn = document.getElementById("erase")
 let pntBtn = document.getElementById("paint")
-let fillBtn = document.getElementById("fill")
+let fillBtn = document.getElementById("fill-canvas")
+let fillBucketBtn = document.getElementById("fill-bucket")
 
 // variables
 let erase = false;
 let draw = false;
+let fill = false;
 
 // functions on document load
 window.addEventListener('load', (event) => {
@@ -34,29 +36,40 @@ gridInputHeight.addEventListener("input", ()=>{
     gridHeightLabel.textContent = gridInputHeight.value
 })
 
+document.addEventListener("mouseup", ()=>{
+    draw = false;
+})
+
 // button event listeners
 createButton.addEventListener("click", ()=>{
     createGrid()
 }) 
 ersBtn.addEventListener("click", ()=>{
     erase = true;
+    fill = false;
     ersBtn.classList.add("active")
     pntBtn.classList.remove("active")
+    fillBucketBtn.classList.remove("active");
 })
 pntBtn.addEventListener("click", ()=>{
     erase = false;
+    fill = false;
     pntBtn.classList.add("active")
     ersBtn.classList.remove("active")
+    fillBucketBtn.classList.remove("active");
 })
+fillBucketBtn.addEventListener("click", () => {
+    fill = true;
+    erase = false
+    fillBucketBtn.classList.add("active");
+    pntBtn.classList.remove("active");
+    ersBtn.classList.remove("active");
+});
 fillBtn.addEventListener("click", () =>{
     let gridboxes = document.querySelectorAll(".gridbox")
     gridboxes.forEach((e) => {
         e.style.backgroundColor = colorIn.value
     })
-})
-
-document.addEventListener("mouseup", ()=>{
-    draw = false;
 })
 
 // function to create canvas grid
@@ -78,6 +91,10 @@ function createGrid(){
 
             const gridbox = document.createElement("div");
             gridbox.classList.add("gridbox");
+            gridbox.style.backgroundColor = "white"
+
+            gridbox.dataset.row = row;
+            gridbox.dataset.col = col
 
             canvasContainer.appendChild(gridbox);
         }
@@ -93,10 +110,75 @@ function colorDiv(elem){
     }
 }
 
+// flood fill function
+// uses BFS algorithm to fill the cells with color
+function floodFill(startRow, startCol){
+    const boxes = document.querySelectorAll(".gridbox")
+
+    const startBox = [...boxes].find((box) => {
+       return(
+        Number(box.dataset.row) === startRow &&
+        Number(box.dataset.col) === startCol
+       )
+    });
+  
+    const targetColor = startBox.style.backgroundColor;
+    const newColor = colorIn.value;
+
+    if(targetColor === newColor){
+        return;
+    }
+
+    const queue = [];
+    queue.push([startRow,startCol]);
+    const visited = new Set();
+
+    while(queue.length > 0){
+
+        const [row,col] = queue.shift();
+
+
+        const key = `${row},${col}`;
+
+
+        if(visited.has(key)){
+            continue;
+        }
+        visited.add(key);
+
+        const cell = [...boxes].find(c =>
+            Number(c.dataset.row) === row &&
+            Number(c.dataset.col) === col
+        );
+
+        if(!cell){
+            continue;
+        }
+
+        if(cell.style.backgroundColor !== targetColor){
+            continue;
+        }
+
+        cell.style.backgroundColor = newColor;
+
+        queue.push([row+1,col]);
+        queue.push([row-1,col]);
+        queue.push([row,col+1]);
+        queue.push([row,col-1]);
+    }
+}
+
 // event delegation
 // event listener on canvas container to check draw
 canvasContainer.addEventListener("mousedown", (event)=>{
     if(event.target.classList.contains("gridbox")){
+        if(fill){
+            const row = Number(event.target.dataset.row);
+            const col = Number(event.target.dataset.col);
+
+            floodFill(row,col);
+            return;
+        }
         draw = true
         colorDiv(event.target)
     }
